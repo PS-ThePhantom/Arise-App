@@ -145,69 +145,87 @@ function App() {
         </div>
       </div>
 
-    <div className="Faqs-container">
-      <h1>Frequently Asked Questions</h1>
-      <p>Here are some common questions we get</p>
-      <div className="Faqs">
-
-        <div className="Faq">
-          <button className="Faq-header" onClick={() => setFaq1Open(!faq1Open)}>
-            <h2>1. What documents do I need to provide for tax filing?</h2>
-            <i class={!faq1Open ? "fas fa-chevron-down" : "fas fa-chevron-up"}></i>
-          </button>
-          <div className="Faq-body" style={{display: faq1Open ? 'block' : 'none'}}>
-            <p>You’ll need your ID, IRP5(s), bank statements, proof of income and expenses, medical aid certificates, retirement annuity contributions, and any supporting documents for deductions or allowances.</p>
+      <div className="Faqs-container">
+        <h1>Frequently Asked Questions</h1>
+        <p>Here are some common questions we get</p>
+        <div className="Faqs">
+  
+          <div className="Faq">
+            <a className="Faq-header" onClick={() => setFaq1Open(!faq1Open)}>
+              <h2>1. What documents do I need to provide for tax filing?</h2>
+              <i class={!faq1Open ? "fas fa-chevron-down" : "fas fa-chevron-up"}></i>
+            </a>
+            <div className="Faq-body" style={{display: faq1Open ? 'block' : 'none'}}>
+              <div className="Faq-divider"></div>
+              <p>You’ll need your ID, IRP5(s), bank statements, proof of income and expenses, medical aid certificates, retirement annuity contributions, and any supporting documents for deductions or allowances.</p>
+            </div>
           </div>
-        </div>
-
-        <div className="Faq">
-          <button className="Faq-header" onClick={() => setFaq2Open(!faq2Open)}>
-            <h2>2. How can your firm help me save on taxes?</h2>
-            <i class={!faq2Open ? "fas fa-chevron-down" : "fas fa-chevron-up"}></i>
-          </button>
-          <div className="Faq-body" style={{display: faq2Open ? 'block' : 'none'}}>
-            <p>We identify legal deductions, rebates, and incentives based on your business or personal profile. Our strategic tax planning ensures you pay only what’s required — nothing more.</p>
+  
+          <div className="Faq">
+            <a className="Faq-header" onClick={() => setFaq2Open(!faq2Open)}>
+              <h2>2. How can your firm help me save on taxes?</h2>
+              <i class={!faq2Open ? "fas fa-chevron-down" : "fas fa-chevron-up"}></i>
+            </a>
+            <div className="Faq-body" style={{display: faq2Open ? 'block' : 'none'}}>
+              <div className="Faq-divider"></div>
+              <p>We identify legal deductions, rebates, and incentives based on your business or personal profile. Our strategic tax planning ensures you pay only what’s required — nothing more.</p>
+            </div>
           </div>
-        </div>
-
-        <div className="Faq">
-          <button className="Faq-header" onClick={() => setFaq3Open(!faq3Open)}>
-            <h2>3. What's the difference between an accountant and a bookkeeper?</h2>
-            <i class={!faq3Open ? "fas fa-chevron-down" : "fas fa-chevron-up"}></i>
-          </button>
-          <div className="Faq-body" style={{display: faq3Open ? 'block' : 'none'}}>
-            <p>A bookkeeper records day-to-day transactions, while an accountant interprets that data to prepare financial statements, give advice, and ensure compliance with SARS and other regulations.</p>
+  
+          <div className="Faq">
+            <a className="Faq-header" onClick={() => setFaq3Open(!faq3Open)}>
+              <h2>3. What's the difference between an accountant and a bookkeeper?</h2>
+              <i class={!faq3Open ? "fas fa-chevron-down" : "fas fa-chevron-up"}></i>
+            </a>
+            <div className="Faq-body" style={{display: faq3Open ? 'block' : 'none'}}>
+              <div className="Faq-divider"></div>
+              <p>A bookkeeper records day-to-day transactions, while an accountant interprets that data to prepare financial statements, give advice, and ensure compliance with SARS and other regulations.</p>
+            </div>
           </div>
-        </div>
-
-        <div className="Faq">
-          <button className="Faq-header" onClick={() => setFaq4Open(!faq4Open)}>
-            <h2>4. Why is regular financial reporting important for my business?</h2>
-            <i class={!faq4Open ? "fas fa-chevron-down" : "fas fa-chevron-up"}></i>
-          </button>
-          <div className="Faq-body" style={{display: faq4Open ? 'block' : 'none'}}>
-            <p>Monthly or quarterly reporting gives you insight into your cash flow, profitability, and tax obligations. It helps you make informed decisions and avoid financial surprises.</p>
+  
+          <div className="Faq">
+            <a className="Faq-header" onClick={() => setFaq4Open(!faq4Open)}>
+              <h2>4. Why is regular financial reporting important for my business?</h2>
+              <i class={!faq4Open ? "fas fa-chevron-down" : "fas fa-chevron-up"}></i>
+            </a>
+            <div className="Faq-body" style={{display: faq4Open ? 'block' : 'none'}}>
+              <div className="Faq-divider"></div>
+              <p>Monthly or quarterly reporting gives you insight into your cash flow, profitability, and tax obligations. It helps you make informed decisions and avoid financial surprises.</p>
+            </div>
           </div>
-        </div>
-
-        <div className="Faq">
-          <button className="Faq-header" onClick={() => setFaq5Open(!faq5Open)}>
-            <h2>5. Do I really need an accountant if I use accounting software?</h2>
-            <i class={!faq5Open ? "fas fa-chevron-down" : "fas fa-chevron-up"}></i>
-          </button>
-          <div className="Faq-body" style={{display: faq5Open ? 'block' : 'none'}}>
-            <p>Yes. Software helps record transactions, but an accountant ensures accuracy, compliance, strategic insights, and can represent you in audits or with SARS if needed</p>
+  
+          <div className="Faq">
+            <a className="Faq-header" onClick={() => setFaq5Open(!faq5Open)}>
+              <h2>5. Do I really need an accountant if I use accounting software?</h2>
+              <i class={!faq5Open ? "fas fa-chevron-down" : "fas fa-chevron-up"}></i>
+            </a>
+            <div className="Faq-body" style={{display: faq5Open ? 'block' : 'none'}}>
+              <div className="Faq-divider"></div>
+              <p>Yes. Software helps record transactions, but an accountant ensures accuracy, compliance, strategic insights, and can represent you in audits or with SARS if needed</p>
+            </div>
           </div>
+  
         </div>
-
       </div>
-    </div>
 
       <div className="Footer">
-        <p>© 2023 Arise Consulting. All rights reserved.</p>
+        <h1>Let’s Grow Together</h1>
+        <p>Whether you're launching, scaling, or strengthening your business, Arise Consulting is your partner for trusted financial guidance and long-term value. Our expert team delivers tailored tax, accounting, and advisory services to help you thrive in a dynamic business environment.</p>
+        <div className="Contact-Us">
+          <h2>Contact Us</h2>
+          <div className="contacts">
+            <a href="mailto:info@ariseconsulting.co.za"><i class="far fa-envelope"></i>info@ariseconsulting.co.za</a>
+            <a href="tel:+27636018951"><i class="fas fa-phone"></i>+27 636018951</a>
+            <a href="tel:+2773798806"><i class="fas fa-phone"></i>+27 73798806</a>
+            <a href="https://wa.me/+27636018951"><i class="fab fa-whatsapp"></i>+27 636018951</a>
+            <a href="https://wa.me/+2773798806"><i class="fab fa-whatsapp"></i>+27 73798806</a>
+            <a href="https://www.linkedin.com/company/arise-consulting"><i class="fab fa-linkedin"></i>LinkedIn</a>
+            <a href="https://www.facebook.com/ariseconsulting"><i class="fab fa-facebook"></i>Facebook</a>
+          </div>
+        </div>
+        <span className="copyright">© {new Date().getFullYear()} Arise Consulting. All rights reserved.</span>
+        <span className="creator">Website by <a href="https://www.linkedin.com/in/phuluso-singo">Phuluso Singo</a></span>
       </div>
-
-      <p>{!data ? "Loading..." : data}</p>
 
     </div>
   );
