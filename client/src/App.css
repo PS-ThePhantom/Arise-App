@@ -1,38 +1,412 @@
-.App {
-  text-align: center;
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ebebeb;
+  height: 100px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  border-bottom: 1px solid #0f4162;
+  box-shadow: 0 0 10px 5px grey;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.App-logo{
+  height: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.apply-button{
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #ffffff;
+  background-color: #0f4162;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.apply-button:hover{
+  transform: scale(1.15) translateX(-10px);
+  transition: transform 0.3s ease-in-out;
+  background-color: #347190
+}
+
+.apply-text{
+  font-weight: 700;
+  font-variation-settings:
+    "wdth" 100;
+  font-size: 16px;
+}
+
+.apply-additional-info{
+  font-weight: 400;
+  font-variation-settings:
+    "wdth" 100;
+  font-size: 12px;
+  margin-top: 5px
+}
+
+a {
+  text-decoration: none;
+}
+
+.Main-Content{
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding-top: 120px;
+  flex-wrap: wrap;
+  background-color: #ebebeb;
 }
 
-.App-link {
-  color: #61dafb;
+.Main-logo{
+  width: 450px;
+  padding: 20px;
+  min-width: 300px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Main-Info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+  max-width: 500px;
+  text-align: center;
+}
+
+.Main-Info h1{
+  font-weight: 900;
+  font-size: 40px;
+}
+
+.Main-Info p{
+  font-weight: 400;
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.values-missions{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin-top: 10px;
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+.we, .mission, .vision{
+  max-width: 800px;
+  text-align: center;
+  margin: 20px 0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 5px grey;
+  background-color: #ebebeb;
+}
+
+.Values-mission-ico-container{
+  height: 150px;
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 10px 0 10px;
+}
+
+.Values-mission-icon{
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.we h1, .mission h1, .vision h1{
+  font-weight: 900;
+  font-size: 40px;
+  padding: 20px 10px 0 10px;
+  color:#0f4162;
+}
+
+.we p, .mission p, .vision p{
+  font-weight: 400;
+  font-size: 20px;
+  padding: 10px 10px 20px 10px;
+}
+
+.Services{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin-top: 10px;
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+  background-color: #114164;
+  width: 100%;
+}
+
+.Services h1{
+  font-weight: 900;
+  font-size: 40px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.Services p{
+  font-weight: 400;
+  font-size: 20px;
+  color: #ffffff;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.Services-Box{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin-top: 10px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.Tax, .Accounting, .Consulting{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin-top: 10px;
+  background-color: #347190;
+  width: 350px;
+  height: 400px;
+  margin: 10px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #ffffff;
+  border-width: 2px;
+  color: #ffffff;
+}
+
+.Service-Box-inner-Text{
+  height: 250px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+}
+
+.Service-Box-inner-Text h2{
+  font-weight: 900;
+  font-size: 25px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.Service-Box-inner-Text ul{
+  font-weight: 400;
+  font-size: 15px;
+  list-style-type: none;
+}
+
+.Service-Box-inner-Text ul li{
+  margin-bottom: 7px;
+  text-align: left;
+  width: 100%;
+  display: flex;
+}
+
+.Service-Box-inner-Image{
+  height: 150px;
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Service-Box-icon{
+  max-height: 100%;
+  max-width: 100%;  
+}
+
+.services-check{
+  color: #03c924;
+  margin-right: 5px;
+}
+
+.why-choose-us{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+  background: #114164;
+  background: linear-gradient(40deg, rgba(17, 65, 100, 1) 0%, rgba(235, 235, 235, 1) 50%, rgba(184, 184, 184, 1) 100%);
+  width: 100%;
+}
+
+.why-choose-us h1{
+  font-weight: 700;
+  font-size: 40px;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.why-choose-us ul{
+  font-weight: 400;
+  font-size: 20px;
+  text-align: left;
+  padding: 5px 0;
+}
+
+.registered-with{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+  background-color: #000000;
+  width: 100%;
+}
+
+.registered-with h1{
+  font-weight: 500;
+  font-size: 30px;
+  text-align: center;
+  padding: 20px 0 10px 0;
+  color: #ffffff;
+}
+
+.registered-with-logos{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+.registered-with-logos div{
+  width: 187.6px;
+  min-width: 187.6px;
+}
+
+.sait-logo, .sars-logo, .ciba-logo, .sage-logo{
+  max-height: 50px;
+  margin: 0 10px;
+  padding: 5px 0;
+}
+
+.Faqs-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+  background-color: #ebebeb;
+  width: 100%;
+}
+
+.Faqs-container h1{
+  font-weight: 700;
+  font-size: 40px;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.Faqs-container p{
+  font-weight: 200;
+  font-size: 20px;
+  text-align: center;
+  padding-bottom: 5px;
+}
+
+.Faqs{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.Faq{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+  margin: 10px 0;
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+  width: 100%;
+  max-width: 800px;
+  border-radius: 10px;
+  border: 1px solid #0f4162;
+}
+
+.Faq-header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 20px;
+}
+
+.Faq-header h2{
+  font-weight: 500;
+  font-size: 20px;
+  text-align: left;
+}
+
+.Faq-body{
+  width: 100%;
+  padding: 10px 20px;
+}
+
+.Faq-body p{
+  font-weight: 300;
+  font-size: 15px;
+  text-align: left;
 }
