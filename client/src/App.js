@@ -240,7 +240,9 @@ function App() {
     
 }
 
-function Test(){
+/*
+function Test()
+ {
   const [data, setData] = React.useState(null);
 
   React.useEffect(() => {
@@ -248,6 +250,6 @@ function Test(){
       .then((res) => res.json())
       .then((data) => setData(data.message));
   }, []);
-}
+}*/
 
 export default App;
