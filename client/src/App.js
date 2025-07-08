@@ -13,6 +13,8 @@ import ciba from "./assets/ciba.png";
 import sage from "./assets/sage.png";
 import "./App.css";
 
+const [home, setHome] = React.useState(true);
+
 function Home(){
   const [faq1Open, setFaq1Open] = React.useState(false);
   const [faq2Open, setFaq2Open] = React.useState(false);
@@ -24,15 +26,15 @@ function Home(){
   <div className="App">
       <header className="header">
         <img src={logo} className="App-logo" alt="logo" />
-        <a href="#" class="apply-button">
-          <span class="apply-text">Apply Now</span>
-          <span class="apply-additional-info">Free 60 minute consultation</span>
+        <a className="apply-button" onClick={() => setHome(!home)}>
+          <span className="apply-text">Apply Now</span>
+          <span className="apply-additional-info">Free 60 minute consultation</span>
         </a>
       </header>
 
-      <div class="Main-Content">
+      <div className="Main-Content">
         <img src={logo} className="Main-logo" alt="logo" />
-        <div class="Main-Info">
+        <div className="Main-Info">
           <h1>World-Class Accountants and Tax Advisors</h1>
           <p>Empowering Business Growth Through Expert Tax, Accounting & Advisory Solutions.</p>
         </div>
@@ -70,9 +72,9 @@ function Home(){
             <div className="Service-Box-inner-Text">
               <h2>Tax Services</h2>
               <ul>
-                <li><i class="fas fa-check services-check"></i><i>VAT, PAYE, Income Tax Submissions</i></li>
-                <li><i class="fas fa-check services-check"></i><i>SARS Compliance & Dispute Resolution</i></li>
-                <li><i class="fas fa-check services-check"></i><i>Tax Planning & Advisory</i></li>
+                <li><i className="fas fa-check services-check"></i><i>VAT, PAYE, Income Tax Submissions</i></li>
+                <li><i className="fas fa-check services-check"></i><i>SARS Compliance & Dispute Resolution</i></li>
+                <li><i className="fas fa-check services-check"></i><i>Tax Planning & Advisory</i></li>
               </ul>
             </div>
             <div className="Service-Box-inner-Image">
@@ -84,10 +86,10 @@ function Home(){
             <div className="Service-Box-inner-Text">
               <h2>Accounting Services</h2>
               <ul>
-                <li><i class="fas fa-check services-check"></i><i>Bookkeeping</i></li>
-                <li><i class="fas fa-check services-check"></i><i>Financial Statement Preparation</i></li>
-                <li><i class="fas fa-check services-check"></i><i>Payroll Administration</i></li>
-                <li><i class="fas fa-check services-check"></i><i>Budgeting, Cash Flow & Forecasting</i></li>
+                <li><i className="fas fa-check services-check"></i><i>Bookkeeping</i></li>
+                <li><i className="fas fa-check services-check"></i><i>Financial Statement Preparation</i></li>
+                <li><i className="fas fa-check services-check"></i><i>Payroll Administration</i></li>
+                <li><i className="fas fa-check services-check"></i><i>Budgeting, Cash Flow & Forecasting</i></li>
               </ul>
             </div>
             <div className="Service-Box-inner-Image">
@@ -99,10 +101,10 @@ function Home(){
             <div className="Service-Box-inner-Text">
               <h2>Business Consulting</h2>
               <ul>
-                <li><i class="fas fa-check services-check"></i><i>Internal Controls & Risk Management</i></li>
-                <li><i class="fas fa-check services-check"></i><i>B-BBEE Advisory & Verification Support</i></li>
-                <li><i class="fas fa-check services-check"></i><i>Business Process Improvement</i></li>
-                <li><i class="fas fa-check services-check"></i><i>CIPC Registrations & Compliance</i></li>
+                <li><i className="fas fa-check services-check"></i><i>Internal Controls & Risk Management</i></li>
+                <li><i className="fas fa-check services-check"></i><i>B-BBEE Advisory & Verification Support</i></li>
+                <li><i className="fas fa-check services-check"></i><i>Business Process Improvement</i></li>
+                <li><i className="fas fa-check services-check"></i><i>CIPC Registrations & Compliance</i></li>
               </ul>
             </div>
             <div className="Service-Box-inner-Image">
@@ -145,7 +147,7 @@ function Home(){
           <div className="Faq">
             <a className="Faq-header" onClick={() => setFaq1Open(!faq1Open)}>
               <h2>1. What documents do I need to provide for tax filing?</h2>
-              <i class={!faq1Open ? "fas fa-chevron-down" : "fas fa-chevron-up"}></i>
+              <i className={!faq1Open ? "fas fa-chevron-down" : "fas fa-chevron-up"}></i>
             </a>
             <div className="Faq-body" style={{display: faq1Open ? 'block' : 'none'}}>
               <div className="Faq-divider"></div>
@@ -156,7 +158,7 @@ function Home(){
           <div className="Faq">
             <a className="Faq-header" onClick={() => setFaq2Open(!faq2Open)}>
               <h2>2. How can your firm help me save on taxes?</h2>
-              <i class={!faq2Open ? "fas fa-chevron-down" : "fas fa-chevron-up"}></i>
+              <i className={!faq2Open ? "fas fa-chevron-down" : "fas fa-chevron-up"}></i>
             </a>
             <div className="Faq-body" style={{display: faq2Open ? 'block' : 'none'}}>
               <div className="Faq-divider"></div>
@@ -167,7 +169,7 @@ function Home(){
           <div className="Faq">
             <a className="Faq-header" onClick={() => setFaq3Open(!faq3Open)}>
               <h2>3. What's the difference between an accountant and a bookkeeper?</h2>
-              <i class={!faq3Open ? "fas fa-chevron-down" : "fas fa-chevron-up"}></i>
+              <i className={!faq3Open ? "fas fa-chevron-down" : "fas fa-chevron-up"}></i>
             </a>
             <div className="Faq-body" style={{display: faq3Open ? 'block' : 'none'}}>
               <div className="Faq-divider"></div>
@@ -178,7 +180,7 @@ function Home(){
           <div className="Faq">
             <a className="Faq-header" onClick={() => setFaq4Open(!faq4Open)}>
               <h2>4. Why is regular financial reporting important for my business?</h2>
-              <i class={!faq4Open ? "fas fa-chevron-down" : "fas fa-chevron-up"}></i>
+              <i className={!faq4Open ? "fas fa-chevron-down" : "fas fa-chevron-up"}></i>
             </a>
             <div className="Faq-body" style={{display: faq4Open ? 'block' : 'none'}}>
               <div className="Faq-divider"></div>
@@ -189,7 +191,7 @@ function Home(){
           <div className="Faq">
             <a className="Faq-header" onClick={() => setFaq5Open(!faq5Open)}>
               <h2>5. Do I really need an accountant if I use accounting software?</h2>
-              <i class={!faq5Open ? "fas fa-chevron-down" : "fas fa-chevron-up"}></i>
+              <i className={!faq5Open ? "fas fa-chevron-down" : "fas fa-chevron-up"}></i>
             </a>
             <div className="Faq-body" style={{display: faq5Open ? 'block' : 'none'}}>
               <div className="Faq-divider"></div>
@@ -206,13 +208,13 @@ function Home(){
         <div className="Contact-Us">
           <h2>Contact Us</h2>
           <div className="contacts">
-            <a href="mailto:info@ariseconsulting.co.za"><i class="far fa-envelope"></i>info@ariseconsulting.co.za</a>
-            <a href="tel:+27636018951"><i class="fas fa-phone"></i>+27 636018951</a>
-            <a href="tel:+2773798806"><i class="fas fa-phone"></i>+27 73798806</a>
-            <a href="https://wa.me/+27636018951"><i class="fab fa-whatsapp"></i>+27 636018951</a>
-            <a href="https://wa.me/+2773798806"><i class="fab fa-whatsapp"></i>+27 73798806</a>
-            <a href="https://www.linkedin.com/company/arise-consulting"><i class="fab fa-linkedin"></i>LinkedIn</a>
-            <a href="https://www.facebook.com/ariseconsulting"><i class="fab fa-facebook"></i>Facebook</a>
+            <a href="mailto:info@ariseconsulting.co.za"><i className="far fa-envelope"></i>info@ariseconsulting.co.za</a>
+            <a href="tel:+27636018951"><i className="fas fa-phone"></i>+27 636018951</a>
+            <a href="tel:+2773798806"><i className="fas fa-phone"></i>+27 73798806</a>
+            <a href="https://wa.me/+27636018951"><i className="fab fa-whatsapp"></i>+27 636018951</a>
+            <a href="https://wa.me/+2773798806"><i className="fab fa-whatsapp"></i>+27 73798806</a>
+            <a href="https://www.linkedin.com/company/arise-consulting"><i className="fab fa-linkedin"></i>LinkedIn</a>
+            <a href="https://www.facebook.com/ariseconsulting"><i className="fab fa-facebook"></i>Facebook</a>
           </div>
         </div>
         <span className="copyright">© {new Date().getFullYear()} Arise Consulting. All rights reserved.</span>
@@ -223,12 +225,17 @@ function Home(){
   );
 }
 
+function Apply(){
+  return (
+    <div>Welcome</div>
+  );  
+}
 
 function App() {
   
 
   return (
-    Home()
+    home ? <Home /> : <Test />
   );
     
 }
