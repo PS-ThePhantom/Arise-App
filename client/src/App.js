@@ -13,23 +13,15 @@ import ciba from "./assets/ciba.png";
 import sage from "./assets/sage.png";
 import "./App.css";
 
-
-function App() {
-  const [data, setData] = React.useState(null);
+function Home(){
   const [faq1Open, setFaq1Open] = React.useState(false);
   const [faq2Open, setFaq2Open] = React.useState(false);
   const [faq3Open, setFaq3Open] = React.useState(false);
   const [faq4Open, setFaq4Open] = React.useState(false);
   const [faq5Open, setFaq5Open] = React.useState(false);
 
-  React.useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []);
-
   return (
-    <div className="App">
+  <div className="App">
       <header className="header">
         <img src={logo} className="App-logo" alt="logo" />
         <a href="#" class="apply-button">
@@ -149,7 +141,7 @@ function App() {
         <h1>Frequently Asked Questions</h1>
         <p>Here are some common questions we get</p>
         <div className="Faqs">
-  
+
           <div className="Faq">
             <a className="Faq-header" onClick={() => setFaq1Open(!faq1Open)}>
               <h2>1. What documents do I need to provide for tax filing?</h2>
@@ -160,7 +152,7 @@ function App() {
               <p>You’ll need your ID, IRP5(s), bank statements, proof of income and expenses, medical aid certificates, retirement annuity contributions, and any supporting documents for deductions or allowances.</p>
             </div>
           </div>
-  
+
           <div className="Faq">
             <a className="Faq-header" onClick={() => setFaq2Open(!faq2Open)}>
               <h2>2. How can your firm help me save on taxes?</h2>
@@ -171,7 +163,7 @@ function App() {
               <p>We identify legal deductions, rebates, and incentives based on your business or personal profile. Our strategic tax planning ensures you pay only what’s required — nothing more.</p>
             </div>
           </div>
-  
+
           <div className="Faq">
             <a className="Faq-header" onClick={() => setFaq3Open(!faq3Open)}>
               <h2>3. What's the difference between an accountant and a bookkeeper?</h2>
@@ -182,7 +174,7 @@ function App() {
               <p>A bookkeeper records day-to-day transactions, while an accountant interprets that data to prepare financial statements, give advice, and ensure compliance with SARS and other regulations.</p>
             </div>
           </div>
-  
+
           <div className="Faq">
             <a className="Faq-header" onClick={() => setFaq4Open(!faq4Open)}>
               <h2>4. Why is regular financial reporting important for my business?</h2>
@@ -193,7 +185,7 @@ function App() {
               <p>Monthly or quarterly reporting gives you insight into your cash flow, profitability, and tax obligations. It helps you make informed decisions and avoid financial surprises.</p>
             </div>
           </div>
-  
+
           <div className="Faq">
             <a className="Faq-header" onClick={() => setFaq5Open(!faq5Open)}>
               <h2>5. Do I really need an accountant if I use accounting software?</h2>
@@ -204,7 +196,7 @@ function App() {
               <p>Yes. Software helps record transactions, but an accountant ensures accuracy, compliance, strategic insights, and can represent you in audits or with SARS if needed</p>
             </div>
           </div>
-  
+
         </div>
       </div>
 
@@ -229,6 +221,26 @@ function App() {
 
     </div>
   );
+}
+
+
+function App() {
+  
+
+  return (
+    Home()
+  );
+    
+}
+
+function Test(){
+  const [data, setData] = React.useState(null);
+
+  React.useEffect(() => {
+    fetch("/api")
+      .then((res) => res.json())
+      .then((data) => setData(data.message));
+  }, []);
 }
 
 export default App;
