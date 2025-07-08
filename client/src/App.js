@@ -13,9 +13,7 @@ import ciba from "./assets/ciba.png";
 import sage from "./assets/sage.png";
 import "./App.css";
 
-const [home, setHome] = React.useState(true);
-
-function Home(){
+function Home({ setHome }){
   const [faq1Open, setFaq1Open] = React.useState(false);
   const [faq2Open, setFaq2Open] = React.useState(false);
   const [faq3Open, setFaq3Open] = React.useState(false);
@@ -232,12 +230,11 @@ function Apply(){
 }
 
 function App() {
-  
+  const [home, setHome] = React.useState(true);
 
   return (
-    home ? <Home /> : <Test />
+    home ? <Home setHome={setHome} /> : <Apply />
   );
-    
 }
 
 /*
