@@ -4,6 +4,10 @@
   margin: 0;
 }
 
+@media (max-width: 768px){
+  
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -90,12 +94,12 @@ a {
   text-align: center;
 }
 
-.Main-Info h1{
+.Main-Info > h1{
   font-weight: 900;
   font-size: 40px;
 }
 
-.Main-Info p{
+.Main-Info > p{
   font-weight: 400;
   font-size: 20px;
   margin-top: 20px;
@@ -165,7 +169,7 @@ a {
   width: 100%;
 }
 
-.Services h1{
+.Services > h1{
   font-weight: 900;
   font-size: 40px;
   color: #ffffff;
@@ -217,20 +221,20 @@ a {
   padding: 15px;
 }
 
-.Service-Box-inner-Text h2{
+.Service-Box-inner-Text > h2{
   font-weight: 900;
   font-size: 25px;
   margin-bottom: 15px;
   text-align: center;
 }
 
-.Service-Box-inner-Text ul{
+.Service-Box-inner-Text > ul{
   font-weight: 400;
   font-size: 15px;
   list-style-type: none;
 }
 
-.Service-Box-inner-Text ul li{
+.Service-Box-inner-Text > ul > li{
   margin-bottom: 7px;
   text-align: left;
   width: 100%;
@@ -270,14 +274,14 @@ a {
   width: 100%;
 }
 
-.why-choose-us h1{
+.why-choose-us > h1{
   font-weight: 700;
   font-size: 40px;
   text-align: center;
   padding: 10px 20px;
 }
 
-.why-choose-us ul{
+.why-choose-us > ul{
   font-weight: 400;
   font-size: 20px;
   text-align: left;
@@ -298,7 +302,7 @@ a {
   width: 100%;
 }
 
-.registered-with h1{
+.registered-with > h1{
   font-weight: 500;
   font-size: 22px;
   text-align: center;
@@ -316,7 +320,7 @@ a {
   padding-bottom: 10px;
 }
 
-.registered-with-logos div{
+.registered-with-logos > div{
   width: 187.6px;
   min-width: 187.6px;
 }
@@ -340,14 +344,14 @@ a {
   width: 100%;
 }
 
-.Faqs-container h1{
+.Faqs-container > h1{
   font-weight: 700;
   font-size: 40px;
   text-align: center;
   padding: 10px 0;
 }
 
-.Faqs-container p{
+.Faqs-container > p{
   font-weight: 200;
   font-size: 20px;
   text-align: center;
@@ -395,7 +399,7 @@ a {
   cursor: pointer;
 }
 
-.Faq-header h2{
+.Faq-header > h2{
   font-weight: 500;
   font-size: 20px;
   text-align: left;
@@ -406,7 +410,7 @@ a {
   padding: 0 20px 20px 20px;
 }
 
-.Faq-body p{
+.Faq-body > p{
   font-weight: 300;
   font-size: 15px;
   text-align: left;
@@ -433,14 +437,14 @@ a {
   color: #ffffff;
 }
 
-.Footer h1{
+.Footer > h1{
   font-weight: 700;
   font-size: 40px;
   text-align: center;
   padding: 10px 0;
 }
 
-.Footer p{
+.Footer > p{
   font-weight: 200;
   font-size: 20px;
   text-align: center;
@@ -455,7 +459,7 @@ a {
   padding: 20px 0;
 }
 
-.Contact-Us h2{
+.Contact-Us > h2{
   font-weight: 500;
   font-size: 22px;
   text-align: center;
@@ -481,7 +485,7 @@ a {
   transition: transform 0.3s ease-in-out;
 }
 
-.Contact-Us a i{
+.Contact-Us > a > i{
   margin-right: 10px;
 }
 
@@ -492,7 +496,7 @@ a {
   padding-bottom: 10px;
 }
 
-.creator a{
+.creator > a{
   text-decoration: none;
   color: #ffffff;
 }
@@ -511,6 +515,33 @@ a {
   width: 100%;
 }
 
+.HBC{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.HB{
+  background: none;
+  font-size: 30px;
+}
+
+.HB:hover{
+  cursor: pointer;
+}
+
+.HBC-Arrow{
+  margin-right: 10px;
+}
+
+.HBC-Div{
+  width: 100%;
+  height: 1px;
+  margin-top: 10px;
+  border-top: 1px solid #0f4162;
+}
+
 .AML-container {
   height: 250px;
   width: 250px;
@@ -524,4 +555,160 @@ a {
 .AML{
   max-width: 100%;
   max-height: 100%;
+}
+
+.apply-page-conatiner > h1{
+  font-weight: 700;
+  font-size: 40px;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.apply-page-conatiner > p{
+  font-weight: 200;
+  font-size: 20px;
+  text-align: center;
+  padding-bottom: 10px;
+  max-width: 600px;
+}
+
+.apply-page-conatiner > form{
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+  padding: 20px;
+  width: 100%;
+  max-width: 1000px;
+  background-color: rgb(245, 245, 245, 0.5);
+  border: 1px solid #0f4162;
+  border-radius: 10px;
+}
+
+.Apply-Form-Info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  min-width: 300px;
+  height: 100%;
+  padding-right: 20px;
+  border-right: 1px solid #0f4162;
+}
+
+.Apply-Form-Info > img{
+  width: 100px;
+}
+
+.Apply-Form-Info > h2{
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.Apply-Form-Info > span{
+  font-weight: 300;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+.Apply-Form-Info > div{
+  width: 100%;
+  height: 350px;
+  overflow-y: auto;
+  font-size: 13px;
+}
+
+.Apply-Form-Info div h3{
+  font-weight: 400;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.Apply-Form-Info div p{
+  font-size: 13px;
+  text-align: left;
+}
+
+.Apply-Form-Info div ul{
+  margin-bottom: 10px;
+  list-style-type: circle;
+  list-style-position: outside;
+}
+
+.Apply-Form-Info div ul li{
+  margin-bottom: 2px;
+  font-weight: 200;
+  font-size: 13px;
+}
+
+.inputs{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.inputs > div{
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 20px;
+  padding-left: 20px;
+  width: 100%;
+}
+
+.IGI{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.IGI-Full{
+  grid-column: 1 / span 2;
+}
+
+.IGI > input, .IGI > select{
+  width: 100%;
+  height: 50px;
+  border: 1px solid #0f4162;
+  border-radius: 5px;
+  margin-top: 5px;
+  padding: 5px 10px;
+  background: none;
+}
+
+.IGI select option{
+  background: none;
+  width: 100%;
+  height: 50px;
+  padding: 5px 10px;
+}
+
+.additional-info{
+  width: 100%;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.AI-text{
+  display: block;
+  width: 100%;
+  height: 150px;
+  border: 1px solid #0f4162;
+  border-radius: 5px;
+  margin-top: 5px;
+  padding: 10px;
+  background: none;
+  resize: none;
+}
+
+.ABC{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.AB{
+  grid-column: 1 / span 2;
+  width: 50%;
+  margin: auto;
 }

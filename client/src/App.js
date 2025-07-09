@@ -224,12 +224,14 @@ function Home({ setHome }){
 }
 
 function Apply({ setHome }){
+  const [currentWindow, setWindow] = React.useState("Personal");
+  
   return (
     <div>
       <div className="apply-page-conatiner">
         <div className="HBC">
-          <a className="apply-button" onClick={() => setHome(true)}>
-            <i className="fas fa-arrow-left"></i><span className="apply-text">Home</span>
+          <a className="HB" onClick={() => setHome(true)}>
+            <i className="fas fa-arrow-left HBC-Arrow"></i>Home
           </a>
           <div className="HBC-Div"></div>
         </div>
@@ -238,61 +240,108 @@ function Apply({ setHome }){
         </div>
         <h1>Book a Session</h1>
         <p>Please fill in the form below to apply for our services</p>
-        <form>
-          <label htmlFor="name">Name</label>
-          <input type="text" name="name" id="name" placeholder="Full Name" />
-          <label htmlFor="phone">Phone</label>
-          <input type="text" name="phone" id="phone" placeholder="Phone Number" />
-          <label htmlFor="email">Email</label>
-          <input type="text" name="email" id="email" placeholder="Email Address" />
-          <label htmlFor="service">What service are you interested in?</label>
-          <select name="service" id="service">
-            <option disabled selected hidden>select one</option>
-            <option value="tax">Tax Services</option>
-            <option value="accounting">Accounting Services</option>
-            <option value="consulting">Business Consulting</option>
-          </select>
-          <label htmlFor="type">Is this for your business or personal?</label>
-          <select name="type" id="type" placeholder="select one">
-            <option value="business">Business</option>
-            <option value="personal">Personal</option>
-            <option value="both">Both</option>
-          </select>
-          <label htmlFor="company">If business, what is your companies name?</label>
-          <input type="text" name="company" id="company" placeholder="Company Name" />
-          <label htmlFor="company-age">If business, how long has your company been active for?</label>
-          <select name="company-age" id="company-age" placeholder="select one">
-            <option value="0-1">0 - 1 Years</option>
-            <option value="1-3">1 - 3 Years</option>
-            <option value="3-5">3 - 5 Years</option>
-            <option value="5-10">5 - 10 Years</option>
-            <option value="10+">10+ Years</option>
-          </select>
-          <label htmlFor="business-revenue">If business, how much revenue does your company bring in a year?</label>
-          <select name="business-revenue" id="business-revenue" placeholder="select one">
-            <option value="0-100000">R0 - R100k Annually</option>
-            <option value="100000-500000">R100k - R500k Annually</option>
-            <option value="500000-1000000">R500k - R1m Annually</option>
-            <option value="1000000-5000000">R1m - R5m Annually</option>
-            <option value="5000000+">R5m+ Annually</option>
-          </select>
-          <label htmlFor="message">Anything else you would like us to know?</label>
-          <textarea name="message" id="message" placeholder="Message"></textarea>
-          <label htmlFor="date">Select Date & Time</label>
-          <input type="date" name="date" id="date" />
-          <div className="Time-Slots">
-            <a className="Time">09:00 AM</a>
-            <a className="Time">10:00 AM</a>
-            <a className="Time">11:00 AM</a>
-            <a className="Time">12:00 PM</a>
-            <a className="Time">01:00 PM</a>
-            <a className="Time">02:00 PM</a>
-            <a className="Time">03:00 PM</a>
-            <a className="Time">04:00 PM</a>
-            <a className="Time">05:00 PM</a>
+        <form className="Apply-Form">
+          <div className="Apply-Form-Info">
+            <img src={logo} alt="logo or picture" />
+            <h2>1 hour free consultation</h2>
+            <span><i className="far fa-clock info-clock-icon"></i> 60 mins</span>
+            <div>
+              <h3><i className="far fa-calendar-alt"></i> Book Your Free 1-Hour Accounting Consultation</h3>
+              <p>Our free 1-hour accounting consultation is designed to help you understand your financial situation and identify areas for improvement. During this session, our expert accountant will identify your business goals, review your numbers, identify opportunities to save, and check for any compliancy challenges which can be resolved.</p>
+              <ul>
+                <li>• No strings attached—just real clarity.</li>
+                <li>• Expert advice tailored to your business.</li>
+                <li>• Ask anything—tax, payroll, reporting, we’ve got you</li>
+              </ul>
+              <h3>Take the first step toward cleaner books and greater peace of mind. Book your session today.</h3>
+            </div>
+          </div>
+          <div className="inputs">
+            <div className="first-inputs" style={{display: currentWindow == "Personal" ? 'grid' : 'none'}}>
+              <div className="IGI">
+                <label htmlFor="first-name">First Name</label>
+                <input type="text" name="first-name" id="first-name" placeholder="First Name" />
+              </div>
+              <div className="IGI">
+                <label htmlFor="last-name">Last Name</label>
+                <input type="text" name="last-name" id="last-name" placeholder="Last Name" />
+              </div>
+              <div className="IGI">
+                <label htmlFor="phone">Phone</label>
+                <input type="tel" name="phone" autocomplete="off" class="countryphone" id="phone" data-required="true" placeholder="071 123 4567" data-intl-tel-input-id="0"/>
+              </div>
+              <div className="IGI">
+                <label htmlFor="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Email Address" />
+              </div>
+              <div className="IGI IGI-Full">
+                <label htmlFor="service">What service are you interested in?</label>
+                <select name="service" id="service">
+                  <option disabled selected hidden>Please select one</option>
+                  <option value="tax">Tax Services</option>
+                  <option value="accounting">Accounting Services</option>
+                  <option value="consulting">Business Consulting</option>
+                </select>
+              </div>
+              <div className="IGI IGI-Full">
+                <label htmlFor="type">Is this for your business or personal?</label>
+                <select name="type" id="type" placeholder="select one">
+                  <option disabled selected hidden>Please select one</option>
+                  <option value="business">Business</option>
+                  <option value="personal">Personal</option>
+                  <option value="both">Both</option>
+                </select>
+              </div>
+              <div className="IGI IGI-Full">
+                <a className="apply-button AB" onClick={() => }>Next</a>
+              </div>
+            </div>
+            <div className="business-inputs" style={{display: currentWindow == "Business" ? 'grid' : 'none'}}></div>
+          
+          <div className="second-inputs" style={{display: currentWindow == "Other" ? 'block' : 'none'}}>
+            <div className="IGI IGI-Full">
+              <label htmlFor="additional-info" className="TA">Additional information</label>
+              <textarea className="AI-text" name="additional-info" id="additional-info" placeholder="Is there anything you would like us to know before your appointment?" />
+            </div>
+            
+            
+            <label htmlFor="company">If business, what is your companies name?</label>
+            <input type="text" name="company" id="company" placeholder="Company Name" />
+            <label htmlFor="company-age">If business, how long has your company been active for?</label>
+            <select name="company-age" id="company-age" placeholder="select one">
+              <option value="0-1">0 - 1 Years</option>
+              <option value="1-3">1 - 3 Years</option>
+              <option value="3-5">3 - 5 Years</option>
+              <option value="5-10">5 - 10 Years</option>
+              <option value="10+">10+ Years</option>
+            </select>
+            <label htmlFor="business-revenue">If business, how much revenue does your company bring in a year?</label>
+            <select name="business-revenue" id="business-revenue" placeholder="select one">
+              <option value="0-100000">R0 - R100k Annually</option>
+              <option value="100000-500000">R100k - R500k Annually</option>
+              <option value="500000-1000000">R500k - R1m Annually</option>
+              <option value="1000000-5000000">R1m - R5m Annually</option>
+              <option value="5000000+">R5m+ Annually</option>
+            </select>
+            <label htmlFor="message">Anything else you would like us to know?</label>
+            <textarea name="message" id="message" placeholder="Message"></textarea>
+              
+            <label htmlFor="date">Select Date & Time</label>
+            <input type="date" name="date" id="date" />
+            <div className="Time-Slots">
+              <a className="Time">09:00 AM</a>
+              <a className="Time">10:00 AM</a>
+              <a className="Time">11:00 AM</a>
+              <a className="Time">12:00 PM</a>
+              <a className="Time">01:00 PM</a>
+              <a className="Time">02:00 PM</a>
+              <a className="Time">03:00 PM</a>
+              <a className="Time">04:00 PM</a>
+              <a className="Time">05:00 PM</a>
+            </div>
+          </div>
           </div>
         </form>
-        <a className="apply-button" href="#">Apply</a>
       </div>
     
       <div className="Apply-Footer">
