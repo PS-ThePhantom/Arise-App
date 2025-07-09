@@ -225,7 +225,7 @@ function Home({ setHome }){
 
 function Apply({ setHome }){
   const [currentWindow, setWindow] = React.useState("Personal");
-  
+
   return (
     <div>
       <div className="apply-page-conatiner">
@@ -293,18 +293,26 @@ function Apply({ setHome }){
                 </select>
               </div>
               <div className="IGI IGI-Full">
-                <a className="apply-button AB" onClick={() => }>Next</a>
+                <a className="apply-button AB" onClick={() => {
+                  const typeSelect = document.getElementById('type');
+                  const value = typeSelect.value;
+                  if (value === "business" || value === "both") {
+                    setWindow("Business");
+                  } else {
+                    setWindow("Other");
+                  }
+                }}>Next</a>
               </div>
             </div>
             <div className="business-inputs" style={{display: currentWindow == "Business" ? 'grid' : 'none'}}></div>
-          
+
           <div className="second-inputs" style={{display: currentWindow == "Other" ? 'block' : 'none'}}>
             <div className="IGI IGI-Full">
               <label htmlFor="additional-info" className="TA">Additional information</label>
               <textarea className="AI-text" name="additional-info" id="additional-info" placeholder="Is there anything you would like us to know before your appointment?" />
             </div>
-            
-            
+
+
             <label htmlFor="company">If business, what is your companies name?</label>
             <input type="text" name="company" id="company" placeholder="Company Name" />
             <label htmlFor="company-age">If business, how long has your company been active for?</label>
@@ -325,7 +333,7 @@ function Apply({ setHome }){
             </select>
             <label htmlFor="message">Anything else you would like us to know?</label>
             <textarea name="message" id="message" placeholder="Message"></textarea>
-              
+
             <label htmlFor="date">Select Date & Time</label>
             <input type="date" name="date" id="date" />
             <div className="Time-Slots">
@@ -343,7 +351,7 @@ function Apply({ setHome }){
           </div>
         </form>
       </div>
-    
+
       <div className="Apply-Footer">
         <div className="flc">
           <img src={logo} className="App-logo" alt="logo" />
@@ -352,7 +360,7 @@ function Apply({ setHome }){
         <span className="copyright">© {new Date().getFullYear()} Arise Consulting. All rights reserved.</span>
         <span className="creator">Website by <a href="https://www.linkedin.com/in/phuluso-singo">Phuluso Singo</a></span>
       </div>
-        
+
     </div>
   );  
 }
