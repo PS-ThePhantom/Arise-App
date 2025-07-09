@@ -24,7 +24,7 @@ function Home({ setHome }){
   <div className="App">
       <header className="header">
         <img src={logo} className="App-logo" alt="logo" />
-        <a className="apply-button" onClick={() => setHome(!home)}>
+        <a className="apply-button" onClick={() => setHome(false)}>
           <span className="apply-text">Apply Now</span>
           <span className="apply-additional-info">Free 60 minute consultation</span>
         </a>
@@ -223,9 +223,88 @@ function Home({ setHome }){
   );
 }
 
-function Apply(){
+function Apply({ setHome }){
   return (
-    <div>Welcome</div>
+    <div>
+      <div className="apply-page-conatiner">
+        <div className="HBC">
+          <a className="apply-button" onClick={setHome(true)}>
+            <i className="fas fa-arrow-left"></i><span className="apply-text">Home</span>
+          </a>
+          <div className="HBC-Div"></div>
+        </div>
+        <div className="AML-container">
+          <img src={logo} className="AML" alt="logo" />
+        </div>
+        <h1>Book a Session</h1>
+        <p>Please fill in the form below to apply for our services</p>
+        <form>
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" placeholder="Full Name" />
+          <label for="phone">Phone</label>
+          <input type="text" name="phone" id="phone" placeholder="Phone Number" />
+          <label for="email">Email</label>
+          <input type="text" name="email" id="email" placeholder="Email Address" />
+          <label for="service">What service are you interested in?</label>
+          <select name="service" id="service">
+            <option disabled selected hidden>select one</option>
+            <option value="tax">Tax Services</option>
+            <option value="accounting">Accounting Services</option>
+            <option value="consulting">Business Consulting</option>
+          </select>
+          <label for="type">Is this for your business or personal?</label>
+          <select name="type" id="type" placeholder="select one">
+            <option value="business">Business</option>
+            <option value="personal">Personal</option>
+            <option value="both">Both</option>
+          </select>
+          <label for="company">If business, what is your companies name?</label>
+          <input type="text" name="company" id="company" placeholder="Company Name" />
+          <label for="company-age">If business, how long has your company been active for?</label>
+          <select name="company-age" id="company-age" placeholder="select one">
+            <option value="0-1">0 - 1 Years</option>
+            <option value="1-3">1 - 3 Years</option>
+            <option value="3-5">3 - 5 Years</option>
+            <option value="5-10">5 - 10 Years</option>
+            <option value="10+">10+ Years</option>
+          </select>
+          <label for="business-revenue">If business, how much revenue does your company bring in a year?</label>
+          <select name="business-revenue" id="business-revenue" placeholder="select one">
+            <option value="0-100000">R0 - R100k Annually</option>
+            <option value="100000-500000">R100k - R500k Annually</option>
+            <option value="500000-1000000">R500k - R1m Annually</option>
+            <option value="1000000-5000000">R1m - R5m Annually</option>
+            <option value="5000000+">R5m+ Annually</option>
+          </select>
+          <label for="message">Anything else you would like us to know?</label>
+          <textarea name="message" id="message" placeholder="Message"></textarea>
+          <label for="date">Select Date & Time</label>
+          <input type="date" name="date" id="date" />
+          <div className="Time-Slots">
+            <a className="Time">09:00 AM</a>
+            <a className="Time">10:00 AM</a>
+            <a className="Time">11:00 AM</a>
+            <a className="Time">12:00 PM</a>
+            <a className="Time">01:00 PM</a>
+            <a className="Time">02:00 PM</a>
+            <a className="Time">03:00 PM</a>
+            <a className="Time">04:00 PM</a>
+            <a className="Time">05:00 PM</a>
+          </div>
+        </form>
+        <a className="apply-button" href="#">Apply</a>
+      </div>
+    
+      <div className="Apply-Footer">
+        <div className="flc">
+          <img src={logo} className="App-logo" alt="logo" />
+        </div>
+        <p>Empowering Business Growth Through Expert Tax, Accounting & Advisory Solutions.</p>
+        <span className="copyright">© {new Date().getFullYear()} Arise Consulting. All rights reserved.</span>
+        <span className="creator">Website by <a href="https://www.linkedin.com/in/phuluso-singo">Phuluso Singo</a></span>
+      </div>
+        
+    </div>
   );  
 }
 
@@ -233,7 +312,7 @@ function App() {
   const [home, setHome] = React.useState(true);
 
   return (
-    home ? <Home setHome={setHome} /> : <Apply />
+    home ? <Home setHome={setHome} /> : <Apply setHome={setHome}/>
   );
 }
 
