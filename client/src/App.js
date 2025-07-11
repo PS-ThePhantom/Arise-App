@@ -506,15 +506,15 @@ function Apply({ setHome }){
                     <button id="cal-next" onClick={handleNextMonth}></button>
                   </div>
                   <div className="cal-body">
-                      <ul className="days">
-                        <li>Sun</li>
-                        <li>Mon</li>
-                        <li>Tue</li>
-                        <li>Wed</li>
-                        <li>Thu</li>
-                        <li>Fri</li>
-                        <li>Sat</li>
-                      </ul>
+                      <div className="days">
+                        <div>Sun</div>
+                        <div>Mon</div>
+                        <div>Tue</div>
+                        <div>Wed</div>
+                        <div>Thu</div>
+                        <div>Fri</div>
+                        <div>Sat</div>
+                      </div>
                       <ul className="dates">
                         {generateCalendarDates().map((dateObj, index) => (
                           <li key={index} 
@@ -540,16 +540,6 @@ function Apply({ setHome }){
                 <a className="Time">04:00 PM</a>
                 <a className="Time">05:00 PM</a>
               </div>
-            </div>
-            <div className="IGI IGI-FULL Date-Container">
-              <div className="Date Day-Name">Sun</div>
-              <div className="Date Day-Name">Mon</div>
-              <div className="Date Day-Name">Tue</div>
-              <div className="Date Day-Name">Wed</div>
-              <div className="Date Day-Name">Thu</div>
-              <div className="Date Day-Name">Fri</div>
-              <div className="Date Day-Name">Sat</div>
-
             </div>
             <div className="IGI IGI-Full-3">
               <label htmlFor="additional-info" className="TA">Additional information</label>
