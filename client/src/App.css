@@ -776,6 +776,19 @@ a {
   box-shadow: 3px 0px 3px #ccc;
 }
 
+.cal-head #cal-prev:disabled,
+.cal-head #cal-next:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.cal-head #cal-prev:disabled:hover,
+.cal-head #cal-next:disabled:hover {
+  opacity: 0.3;
+  box-shadow: none;
+}
+
 .cal-head #cal-prev:before, 
 .cal-head #cal-next:before {
   content: "";

@@ -503,7 +503,12 @@ function Apply({ setHome }){
               <div className="cal-container">
                 <div className="calendar">
                   <div className="cal-head">
-                    <button type="button" id="cal-prev" onClick={handlePrevMonth}></button>
+                    <button 
+                      type="button" 
+                      id="cal-prev" 
+                      onClick={handlePrevMonth}
+                      disabled={currentMonth === new Date().getMonth() && currentYear === new Date().getFullYear()}
+                    ></button>
                     <h3 className="cal-title">{months[currentMonth]} {currentYear}</h3>
                     <button type="button" id="cal-next" onClick={handleNextMonth}></button>
                   </div>
