@@ -279,6 +279,95 @@ function Home({ setHome }){
 
 function Apply({ setHome }){
   const [currentWindow, setWindow] = React.useState("Personal");
+  
+  // Calendar state
+  const [calendarDate, setCalendarDate] = React.useState(new Date());
+  const [selectedDate, setSelectedDate] = React.useState(null);
+  
+  // Array of month names
+  const months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December",
+  ];
+  
+  // Get current month and year from calendar state
+  const currentMonth = calendarDate.getMonth();
+  const currentYear = calendarDate.getFullYear();
+  
+  // Function to generate calendar dates
+  const generateCalendarDates = () => {
+    const start = new Date(currentYear, currentMonth, 1).getDay();
+    const endDate = new Date(currentYear, currentMonth + 1, 0).getDate();
+    const end = new Date(currentYear, currentMonth, endDate).getDay();
+    const endDatePrev = new Date(currentYear, currentMonth, 0).getDate();
+    
+    const dates = [];
+    
+    // Previous month's last days
+    for (let i = start; i > 0; i--) {
+      dates.push({
+        date: endDatePrev - i + 1,
+        isCurrentMonth: false,
+        isToday: false,
+        fullDate: new Date(currentYear, currentMonth - 1, endDatePrev - i + 1)
+      });
+    }
+    
+    // Current month's dates
+    for (let i = 1; i <= endDate; i++) {
+      const isToday = i === new Date().getDate() && 
+                     currentMonth === new Date().getMonth() && 
+                     currentYear === new Date().getFullYear();
+      
+      dates.push({
+        date: i,
+        isCurrentMonth: true,
+        isToday: isToday,
+        fullDate: new Date(currentYear, currentMonth, i)
+      });
+    }
+    
+    // Next month's first days
+    for (let i = end; i < 6; i++) {
+      dates.push({
+        date: i - end + 1,
+        isCurrentMonth: false,
+        isToday: false,
+        fullDate: new Date(currentYear, currentMonth + 1, i - end + 1)
+      });
+    }
+    
+    return dates;
+  };
+  
+  // Handle navigation
+  const handlePrevMonth = () => {
+    if (currentMonth === 0) {
+      setCalendarDate(new Date(currentYear - 1, 11, 1));
+    } else {
+      setCalendarDate(new Date(currentYear, currentMonth - 1, 1));
+    }
+  };
+  
+  const handleNextMonth = () => {
+    if (currentMonth === 11) {
+      setCalendarDate(new Date(currentYear + 1, 0, 1));
+    } else {
+      setCalendarDate(new Date(currentYear, currentMonth + 1, 1));
+    }
+  };
+  
+  // Handle date selection
+  const handleDateClick = (dateObj) => {
+    if (dateObj.isCurrentMonth) {
+      setSelectedDate(dateObj.fullDate);
+      // Update the hidden date input
+      const dateInput = document.getElementById('date');
+      if (dateInput) {
+        dateInput.value = dateObj.fullDate.toISOString().split('T')[0];
+      }
+    }
+  };
 
   return (
     <div>
@@ -409,15 +498,15 @@ function Apply({ setHome }){
               <input type="date" name="date" id="date" hidden/>
             </div>
             <div className="IGI IGI-FULL Calendar">
-              <div class="cal-container">
-                <div class="calendar">
-                  <div class="cal-head">
-                    <button id="cal-prev"></button>
-                    <h3 class="cal-title"></h3>
-                    <button id="cal-next"></button>
+              <div className="cal-container">
+                <div className="calendar">
+                  <div className="cal-head">
+                    <button id="cal-prev" onClick={handlePrevMonth}></button>
+                    <h3 className="cal-title">{months[currentMonth]} {currentYear}</h3>
+                    <button id="cal-next" onClick={handleNextMonth}></button>
                   </div>
-                  <div class="cal-body">
-                      <ul class="days">
+                  <div className="cal-body">
+                      <ul className="days">
                         <li>Sun</li>
                         <li>Mon</li>
                         <li>Tue</li>
@@ -426,7 +515,14 @@ function Apply({ setHome }){
                         <li>Fri</li>
                         <li>Sat</li>
                       </ul>
-                      <ul class="dates">
+                      <ul className="dates">
+                        {generateCalendarDates().map((dateObj, index) => (
+                          <li key={index} 
+                              className={`${!dateObj.isCurrentMonth ? 'old' : ''} ${dateObj.isToday ? 'today' : ''}`}
+                              onClick={() => handleDateClick(dateObj)}>
+                            <span>{dateObj.date}</span>
+                          </li>
+                        ))}
                       </ul>
                     </div>
                   </div>
