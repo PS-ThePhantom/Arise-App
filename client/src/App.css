@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 *{
   box-sizing: border-box;
   padding: 0;
@@ -655,6 +657,10 @@ a {
   width: 100%;
 }
 
+.Date-And-Time{
+  grid-template-columns: auto auto auto;
+}
+
 .IGI{
   width: 100%;
   display: flex;
@@ -665,6 +671,9 @@ a {
   grid-column: 1 / span 2;
 }
 
+.IGI-Full-3{
+  grid-column: 1 / span 3;
+}
 .IGI > input, .IGI > select{
   width: 100%;
   height: 50px;
@@ -674,6 +683,8 @@ a {
   padding: 5px 10px;
   background: none;
 }
+
+.IGI
 
 .IGI select option{
   background: none;
@@ -711,4 +722,169 @@ a {
   grid-column: 1 / span 2;
   width: 50%;
   margin: auto;
+}
+
+.cal-container {
+  background: #E4E4E4;
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  width: 400px;
+  background: #F5F5F5;
+  box-shadow: 0px 5px 5px #ccc;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.cal-head {
+  text-align: center;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.cal-head h3 {
+  font-size: 18px;
+  font-weight: 600;
+  display: inline-block;
+  background: #fff;
+  padding: 13px 25px;
+  border-radius: 10px;
+}
+
+.cal-head #cal-prev, 
+.cal-head #cal-next {
+  position: absolute;
+  top: 20px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+.cal-head #cal-prev:hover, 
+.cal-head #cal-next:hover,
+.cal-head #cal-prev:focus, 
+.cal-head #cal-next:focus {
+  opacity: 0.8;
+  box-shadow: 3px 0px 3px #ccc;
+}
+
+.cal-head #cal-prev:before, 
+.cal-head #cal-next:before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-style: solid;
+  border-color: #141414;
+  border-width: 2px 2px 0 0;
+}
+
+.cal-head #cal-prev {
+  left: 20px;
+  transform: translate(-50%, -50%) rotate(-135deg);
+}
+
+.cal-head #cal-next {
+  right: -20px;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.days, .dates {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: start;
+}
+
+.days li, .dates li {
+  width: calc(100% / 7);
+  text-align: center;
+  font-size: 18px;
+}
+
+.days {
+  margin-bottom: 15px;
+}
+
+.days li {
+  font-weight: 500;
+  color: #219653;
+  text-transform: uppercase;
+}
+
+.dates li span {
+  background: #fff;
+  width: 100%;
+  height: 50px;
+  display: inline-block;
+  padding-top: 15px;
+  border-radius: 10px;
+  border: 2px solid #F5F5F5;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.dates li span:hover {
+  color: #219653;
+}
+
+.dates li.old span {
+  background: transparent;
+  color: #BDBDBD;
+}
+
+.dates li.today span {
+  background: #219653;
+  color: #fff;
+}
+
+.Apply-Footer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  background-color: #0f4162;
+  width: 100%;
+  color: #ffffff;
+}
+
+.flc > img{
+  max-height: 100px;
+  max-width: 100px;
+}
+
+.Apply-Footer > p{
+  font-weight: 400;
+  font-size: 20px;
+  text-align: center;
+  padding-bottom: 20px;
+  max-width: 600px;
+}
+
+.Apply-Footer > span{
+  font-weight: 100;
+  font-size: 13px;
+  text-align: center;
+  padding-bottom: 5px;
+  color: white;
+}
+
+.Apply-Footer > span > a{
+  text-decoration: none;
+  color: lightgray;
 }

@@ -13,6 +13,60 @@ import ciba from "./assets/ciba.png";
 import sage from "./assets/sage.png";
 import "./App.css";
 
+function checkBusinessInputs(){
+  const company = document.getElementById("company").value.replace(/ /g, "");;
+  const companyAge = document.getElementById("company-age").value;
+  const businessRevenue = document.getElementById("business-revenue").value;
+
+  if(company === ""){
+    alert("Please enter your company name");
+    return false;
+  }else if (companyAge === "none"){
+    alert("Please select your company age");
+    return false;
+  }else if (businessRevenue === "none"){
+    alert("Please select your business revenue");
+    return false;
+  }
+
+  return true;
+}
+
+function checkPersonalInputs(){
+  const firstName = document.getElementById("first-name").value.replace(/ /g, "");
+  const lastName = document.getElementById("last-name").value.replace(/ /g, "");
+  const phone = document.getElementById("phone").value.replace(/ /g, "");
+  const email = document.getElementById("email").value;
+  const service = document.getElementById("service").value;
+  const type = document.getElementById("type").value;
+
+  //email and phone vlaidity regex
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  const phoneRegex = /^((\+27)|0)\d{9}$/;
+
+  if(firstName === ""){
+    alert("Please enter your first name");
+    return false;
+  } else if (lastName === ""){
+    alert("Please enter your last name");
+    return false;
+  } else if (!phoneRegex.test(phone)){
+    alert("Please enter a valid phone number");
+    return false;
+  } else if (!emailRegex.test(email)){
+    alert("Please enter a valid email address");
+    return false;
+  } else if (service === "none"){
+    alert("Please select a service");
+    return false;
+  } else if (type === "none"){
+    alert("Please select a type");
+    return false;
+  }
+  
+  return true;
+}
+
 function Home({ setHome }){
   const [faq1Open, setFaq1Open] = React.useState(false);
   const [faq2Open, setFaq2Open] = React.useState(false);
@@ -24,7 +78,7 @@ function Home({ setHome }){
   <div className="App">
       <header className="header">
         <img src={logo} className="App-logo" alt="logo" />
-        <a className="apply-button" onClick={() => setHome(false)}>
+        <a className="apply-button" href="#Apply-Form" onClick={() => setHome(false)}>
           <span className="apply-text">Apply Now</span>
           <span className="apply-additional-info">Free 60 minute consultation</span>
         </a>
@@ -240,7 +294,7 @@ function Apply({ setHome }){
         </div>
         <h1>Book a Session</h1>
         <p>Please fill in the form below to apply for our services</p>
-        <form className="Apply-Form">
+        <form className="Apply-Form" id="Apply-Form">
           <div className="Apply-Form-Info">
             <img src={logo} alt="logo or picture" />
             <h2>1 hour free consultation</h2>
@@ -277,7 +331,7 @@ function Apply({ setHome }){
               <div className="IGI IGI-Full">
                 <label htmlFor="service">What service are you interested in?</label>
                 <select name="service" id="service">
-                  <option disabled selected hidden>Please select one</option>
+                  <option disabled selected hidden value="none">Please select one</option>
                   <option value="tax">Tax Services</option>
                   <option value="accounting">Accounting Services</option>
                   <option value="consulting">Business Consulting</option>
@@ -286,7 +340,7 @@ function Apply({ setHome }){
               <div className="IGI IGI-Full">
                 <label htmlFor="type">Is this for your business or personal?</label>
                 <select name="type" id="type" placeholder="select one">
-                  <option disabled selected hidden>Please select one</option>
+                  <option disabled selected hidden value="none">Please select one</option>
                   <option value="business">Business</option>
                   <option value="personal">Personal</option>
                   <option value="both">Both</option>
@@ -294,58 +348,119 @@ function Apply({ setHome }){
               </div>
               <div className="IGI IGI-Full">
                 <a className="apply-button AB" onClick={() => {
+                  //check if inputs are valid
+                  if (!checkPersonalInputs()) return;
+                  
+                  //check if type is business or both and set window to business
+                  //if personal go to confirm window
                   const typeSelect = document.getElementById('type');
                   const value = typeSelect.value;
-                  if (value === "business" || value === "both") {
+                  if (value === "none") {
+                    
+                  } else if (value === "business" || value === "both") {
                     setWindow("Business");
                   } else {
-                    setWindow("Other");
+                    setWindow("Confirm");
                   }
                 }}>Next</a>
               </div>
             </div>
-            <div className="business-inputs" style={{display: currentWindow == "Business" ? 'grid' : 'none'}}></div>
+            <div className="business-inputs" style={{display: currentWindow == "Business" ? 'grid' : 'none'}}>
+              <div className="IGI IGI-Full">
+                <label htmlFor="company">What is your companies name?</label>
+                <input type="text" name="company" id="company" placeholder="Company Name" />
+              </div>
+              <div className="IGI IGI-Full">
+                <label htmlFor="company-age">How long has your company been active for?</label>
+                <select name="company-age" id="company-age" placeholder="select one">
+                  <option disabled selected hidden value="none">Please select one</option>
+                  <option value="0-1">0 - 1 Years</option>
+                  <option value="1-3">1 - 3 Years</option>
+                  <option value="3-5">3 - 5 Years</option>
+                  <option value="5-10">5 - 10 Years</option>
+                  <option value="10+">10+ Years</option>
+                </select>
+              </div>
+              <div className="IGI IGI-Full">
+                <label htmlFor="business-revenue">How much revenue does your company bring in a year?</label>
+                <select name="business-revenue" id="business-revenue" placeholder="select one">
+                  <option disabled selected hidden value="none">Please select one</option>
+                  <option value="0-100000">R0 - R100k Annually</option>
+                  <option value="100000-500000">R100k - R500k Annually</option>
+                  <option value="500000-1000000">R500k - R1m Annually</option>
+                  <option value="1000000-5000000">R1m - R5m Annually</option>
+                  <option value="5000000+">R5m+ Annually</option>
+                </select>
+              </div>
+              <div className="IGI IGI-Full">
+                <a className="apply-button AB" onClick={() => {
+                  //check if inputs are valid
+                  if (!checkBusinessInputs()) return;
+      
+                  //go to confirm window
+                  setWindow("Confirm")
+                }}>Next</a>
+              </div>
+            </div>
 
-          <div className="second-inputs" style={{display: currentWindow == "Other" ? 'block' : 'none'}}>
-            <div className="IGI IGI-Full">
+          <div className="Date-And-Time" style={{display: currentWindow == "Confirm" ? 'grid' : 'none'}}>
+            <div className="IGI IGI-Full-3">
+              <label htmlFor="date">Select Date & Time</label>
+              <input type="date" name="date" id="date" hidden/>
+            </div>
+            <div className="IGI IGI-FULL Calendar">
+              <div class="cal-container">
+                <div class="calendar">
+                  <div class="cal-head">
+                    <button id="cal-prev"></button>
+                    <h3 class="cal-title"></h3>
+                    <button id="cal-next"></button>
+                  </div>
+                  <div class="cal-body">
+                      <ul class="days">
+                        <li>Sun</li>
+                        <li>Mon</li>
+                        <li>Tue</li>
+                        <li>Wed</li>
+                        <li>Thu</li>
+                        <li>Fri</li>
+                        <li>Sat</li>
+                      </ul>
+                      <ul class="dates">
+                      </ul>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <div className="IGI">
+              <div className="Time-Slots">
+                <a className="Time">09:00 AM</a>
+                <a className="Time">10:00 AM</a>
+                <a className="Time">11:00 AM</a>
+                <a className="Time">12:00 PM</a>
+                <a className="Time">01:00 PM</a>
+                <a className="Time">02:00 PM</a>
+                <a className="Time">03:00 PM</a>
+                <a className="Time">04:00 PM</a>
+                <a className="Time">05:00 PM</a>
+              </div>
+            </div>
+            <div className="IGI IGI-FULL Date-Container">
+              <div className="Date Day-Name">Sun</div>
+              <div className="Date Day-Name">Mon</div>
+              <div className="Date Day-Name">Tue</div>
+              <div className="Date Day-Name">Wed</div>
+              <div className="Date Day-Name">Thu</div>
+              <div className="Date Day-Name">Fri</div>
+              <div className="Date Day-Name">Sat</div>
+
+            </div>
+            <div className="IGI IGI-Full-3">
               <label htmlFor="additional-info" className="TA">Additional information</label>
               <textarea className="AI-text" name="additional-info" id="additional-info" placeholder="Is there anything you would like us to know before your appointment?" />
             </div>
-
-
-            <label htmlFor="company">If business, what is your companies name?</label>
-            <input type="text" name="company" id="company" placeholder="Company Name" />
-            <label htmlFor="company-age">If business, how long has your company been active for?</label>
-            <select name="company-age" id="company-age" placeholder="select one">
-              <option value="0-1">0 - 1 Years</option>
-              <option value="1-3">1 - 3 Years</option>
-              <option value="3-5">3 - 5 Years</option>
-              <option value="5-10">5 - 10 Years</option>
-              <option value="10+">10+ Years</option>
-            </select>
-            <label htmlFor="business-revenue">If business, how much revenue does your company bring in a year?</label>
-            <select name="business-revenue" id="business-revenue" placeholder="select one">
-              <option value="0-100000">R0 - R100k Annually</option>
-              <option value="100000-500000">R100k - R500k Annually</option>
-              <option value="500000-1000000">R500k - R1m Annually</option>
-              <option value="1000000-5000000">R1m - R5m Annually</option>
-              <option value="5000000+">R5m+ Annually</option>
-            </select>
-            <label htmlFor="message">Anything else you would like us to know?</label>
-            <textarea name="message" id="message" placeholder="Message"></textarea>
-
-            <label htmlFor="date">Select Date & Time</label>
-            <input type="date" name="date" id="date" />
-            <div className="Time-Slots">
-              <a className="Time">09:00 AM</a>
-              <a className="Time">10:00 AM</a>
-              <a className="Time">11:00 AM</a>
-              <a className="Time">12:00 PM</a>
-              <a className="Time">01:00 PM</a>
-              <a className="Time">02:00 PM</a>
-              <a className="Time">03:00 PM</a>
-              <a className="Time">04:00 PM</a>
-              <a className="Time">05:00 PM</a>
+            <div className="IGI IGI-Full-3">
+              <a className="apply-button AB" onClick={() => {}}>Next</a>
             </div>
           </div>
           </div>

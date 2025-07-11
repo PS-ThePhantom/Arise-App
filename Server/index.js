@@ -5,6 +5,8 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
+const sqlite3 = require("sqlite3").verbose();
+
 // API routes should come before static file serving
 app.get("/api", (req, res) => {
   res.json({ message: "Hello from server!" });
