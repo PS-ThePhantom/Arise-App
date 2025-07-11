@@ -341,7 +341,8 @@ function Apply({ setHome }){
   };
   
   // Handle navigation
-  const handlePrevMonth = () => {
+  const handlePrevMonth = (e) => {
+    e.preventDefault();
     if (currentMonth === 0) {
       setCalendarDate(new Date(currentYear - 1, 11, 1));
     } else {
@@ -349,7 +350,8 @@ function Apply({ setHome }){
     }
   };
   
-  const handleNextMonth = () => {
+  const handleNextMonth = (e) => {
+    e.preventDefault();
     if (currentMonth === 11) {
       setCalendarDate(new Date(currentYear + 1, 0, 1));
     } else {
@@ -501,9 +503,9 @@ function Apply({ setHome }){
               <div className="cal-container">
                 <div className="calendar">
                   <div className="cal-head">
-                    <button id="cal-prev" onClick={handlePrevMonth}></button>
+                    <button type="button" id="cal-prev" onClick={handlePrevMonth}></button>
                     <h3 className="cal-title">{months[currentMonth]} {currentYear}</h3>
-                    <button id="cal-next" onClick={handleNextMonth}></button>
+                    <button type="button" id="cal-next" onClick={handleNextMonth}></button>
                   </div>
                   <div className="cal-body">
                       <div className="days">
