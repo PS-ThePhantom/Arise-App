@@ -805,6 +805,7 @@ a {
   flex-wrap: wrap;
   align-items: center;
   justify-content: start;
+  list-style: none;
 }
 
 .days li, .dates li {
