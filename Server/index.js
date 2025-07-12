@@ -7,9 +7,15 @@ const app = express();
 
 const sqlite3 = require("sqlite3").verbose();
 
+const weekendAppointments = false;
+
 // API routes should come before static file serving
 app.get("/api", (req, res) => {
   res.json({ message: "Hello from server!" });
+});
+
+app.get("/api/weekendOpen", (req, res) => {
+  res.json({ message: weekendAppointments });
 });
 
 // Have Node serve the files for our built React app

@@ -853,9 +853,19 @@ a {
 .dates li.old span {
   background: transparent;
   color: #BDBDBD;
+  cursor: default;
+}
+
+.dates li.current-disabled span{
+  background: transparent;
+  cursor: default;
 }
 
 .dates li.today span {
+  border: 1 px solid #219653;
+}
+
+.dates li.active span {
   background: #219653;
   color: #fff;
 }

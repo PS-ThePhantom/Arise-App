@@ -38,4 +38,4 @@ db.run(sql, (err) => {
 })
 
 //insert all south african holidays into holidays table
-sql = `INSERT into holidays(name, day, month) VALUES('New Year', 1, 1), ('Human Rights Day', 21, 3), ('Good Friday', 7, 4), ('Family Day', 9,`
+const date = new Date();

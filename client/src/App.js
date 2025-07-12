@@ -13,6 +13,7 @@ import ciba from "./assets/ciba.png";
 import sage from "./assets/sage.png";
 import "./App.css";
 
+
 function checkBusinessInputs(){
   const company = document.getElementById("company").value.replace(/ /g, "");;
   const companyAge = document.getElementById("company-age").value;
@@ -283,6 +284,14 @@ function Apply({ setHome }){
   // Calendar state
   const [calendarDate, setCalendarDate] = React.useState(new Date());
   const [selectedDate, setSelectedDate] = React.useState(null);
+
+  const [weekendOpen, setWeekendOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    fetch("/api")
+      .then((res) => res.json())
+      .then((data) => setWeekendOpen(data.message));
+  }, []);
   
   // Array of month names
   const months = [
@@ -524,11 +533,8 @@ function Apply({ setHome }){
                       </div>
                       <ul className="dates">
                         {generateCalendarDates().map((dateObj, index) => (
-                          <li key={index} 
-                              className={`${!dateObj.isCurrentMonth ? 'old' : ''} ${dateObj.isToday ? 'today' : ''}`}
-                              onClick={() => handleDateClick(dateObj)}>
-                            <span>{dateObj.date}</span>
-                          </li>
+                          <div></div>
+                          
                         ))}
                       </ul>
                     </div>
@@ -584,13 +590,7 @@ function App() {
 /*
 function Test()
  {
-  const [data, setData] = React.useState(null);
-
-  React.useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []);
+  
 }*/
 
 export default App;
