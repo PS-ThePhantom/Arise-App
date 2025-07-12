@@ -6,6 +6,14 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 const sqlite3 = require("sqlite3").verbose();
+const { google } = require('googleapis');
+const { auth } = require('google-auth-library');
+const calendar = google.calendar('v3');
+
+const authClient = new auth.GoogleAuth({
+  keyFile: '.arise-calendar-api',
+  scopes: ['https://www.googleapis.com/auth/calendar'],
+});
 
 const weekendAppointments = false;
 
