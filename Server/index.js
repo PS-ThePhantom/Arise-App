@@ -10,12 +10,12 @@ const app = express();
 
 const sqlite3 = require("sqlite3").verbose();
 const { google } = require('googleapis');
-const auth = require('google-auth-library');
 const calendar = google.calendar('v3');
 
-const authClient = new auth.GoogleAuth({
+const { GoogleAuth } = require('google-auth-library');
+const authClient = new GoogleAuth({
   keyFile: 'arise-calendar-api.json',
-  scopes: ['https://www.googleapis.com/auth/calendar'],
+  scopes: ['https://www.googleapis.com/auth/calendar']
 });
 
 const weekendAppointments = false;
