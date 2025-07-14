@@ -68,7 +68,7 @@ function checkPersonalInputs(){
   return true;
 }
 
-function Home({ setHome }){
+function Home({ setPage }){
   const [faq1Open, setFaq1Open] = React.useState(false);
   const [faq2Open, setFaq2Open] = React.useState(false);
   const [faq3Open, setFaq3Open] = React.useState(false);
@@ -79,7 +79,7 @@ function Home({ setHome }){
   <div className="App">
       <header className="header">
         <img src={logo} className="App-logo" alt="logo" />
-        <a className="apply-button" href="#Apply-Form" onClick={() => setHome(false)}>
+        <a className="apply-button" href="#Apply-Form" onClick={() => setPage("apply")}>
           <span className="apply-text">Apply Now</span>
           <span className="apply-additional-info">Free 60 minute consultation</span>
         </a>
@@ -261,13 +261,12 @@ function Home({ setHome }){
         <div className="Contact-Us">
           <h2>Contact Us</h2>
           <div className="contacts">
-            <a href="mailto:info@ariseconsulting.co.za"><i className="far fa-envelope"></i>info@ariseconsulting.co.za</a>
-            <a href="tel:+27636018951"><i className="fas fa-phone"></i>+27 636018951</a>
-            <a href="tel:+2773798806"><i className="fas fa-phone"></i>+27 73798806</a>
-            <a href="https://wa.me/+27636018951"><i className="fab fa-whatsapp"></i>+27 636018951</a>
-            <a href="https://wa.me/+2773798806"><i className="fab fa-whatsapp"></i>+27 73798806</a>
-            <a href="https://www.linkedin.com/company/arise-consulting"><i className="fab fa-linkedin"></i>LinkedIn</a>
-            <a href="https://www.facebook.com/ariseconsulting"><i className="fab fa-facebook"></i>Facebook</a>
+            <a href="mailto:info@ariseconsulting.co.za"><i className="far fa-envelope"></i>   info@ariseconsulting.co.za</a>
+            
+            <a href="tel:+2773798806"><i className="fas fa-phone"></i>   +27 73798806</a>
+            <a href="https://wa.me/+2773798806"><i className="fab fa-whatsapp"></i>   +27 73798806</a>
+            <a href="https://www.linkedin.com/company/arise-consulting"><i className="fab fa-linkedin"></i>   LinkedIn</a>
+            <a href="https://www.facebook.com/profile.php?id=61577942130155"><i className="fab fa-facebook"></i>   Facebook</a>
           </div>
         </div>
         <span className="copyright">© {new Date().getFullYear()} Arise Consulting. All rights reserved.</span>
@@ -278,26 +277,61 @@ function Home({ setHome }){
   );
 }
 
-function Apply({ setHome }){
+function ThankYou({ setPage }){
+  return (
+    <div className="Thank-You">
+      <img src={logo} className="logo-Thankyou" alt="logo" />
+      <h1>You're All Set!</h1>
+      <p>Your application has been submitted successfully, You will recieve a confirmation email shortly.</p>
+      <p>Check your inbox for a confirmation email with important details. (If you don’t see it, be sure to check your spam or promotions folder — just in case!)</p>
+      <a className="apply-button" onClick={() => setPage("home")}><i className="fas fa-home"></i> Return Home</a>
+    </div>
+  )
+}
+
+function Apply({ setPage }){
   const [currentWindow, setWindow] = React.useState("Personal");
   
   // Calendar state
   const [calendarDate, setCalendarDate] = React.useState(new Date());
   const [selectedDate, setSelectedDate] = React.useState(null);
+  const [availableDays, setAvailableDays] = React.useState([]);
+  const [availableSlots, setAvailableSlots] = React.useState([]);
+  const [selectedTime, setSelectedTime] = React.useState(null)
 
-  const [weekendOpen, setWeekendOpen] = React.useState(false);
+  const fetchSlotAvailability = async (month, year) => {
+    try {
+      const res = await fetch(`/api/available-slots?month=${month + 1}&year=${year}`);
 
-  React.useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setWeekendOpen(data.message));
-  }, []);
+      if (!res.ok) {
+        // Stop if the server response isn't OK
+        console.error("Server returned an error:", res.statusText);
+        return;
+      }
+
+      const data = await res.json();
+
+      if (data.days && data.days.length > 0) {
+        setAvailableDays(data.days);
+      } else {
+        // Valid response but no slots — safe to move to next month
+        handleNextMonth(new Event("next"));
+      }
+    } catch (err) {
+      console.error("Failed to fetch slots:", err);
+      // Do NOT move to next month on error
+    }
+  };
   
   // Array of month names
   const months = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December",
   ];
+
+  React.useEffect(() => {
+    fetchSlotAvailability(currentMonth, currentYear);
+  }, [calendarDate]);
   
   // Get current month and year from calendar state
   const currentMonth = calendarDate.getMonth();
@@ -309,43 +343,49 @@ function Apply({ setHome }){
     const endDate = new Date(currentYear, currentMonth + 1, 0).getDate();
     const end = new Date(currentYear, currentMonth, endDate).getDay();
     const endDatePrev = new Date(currentYear, currentMonth, 0).getDate();
-    
-    const dates = [];
-    
+
+    let dates = [];
+
     // Previous month's last days
     for (let i = start; i > 0; i--) {
       dates.push({
-        date: endDatePrev - i + 1,
-        isCurrentMonth: false,
-        isToday: false,
+        specification: "old",
+        slots: [],
+        active: false,
+        day: endDatePrev - i + 1,
         fullDate: new Date(currentYear, currentMonth - 1, endDatePrev - i + 1)
       });
     }
-    
-    // Current month's dates
-    for (let i = 1; i <= endDate; i++) {
-      const isToday = i === new Date().getDate() && 
-                     currentMonth === new Date().getMonth() && 
-                     currentYear === new Date().getFullYear();
+
+    // Current month's days with slot data
+    for(let i=0; i<availableDays.length; i++){
+      if(!selectedDate && availableDays[i].active) {
+        setSelectedDate(new Date(currentYear, currentMonth, availableDays[i].day));
+        setAvailableSlots(availableDays[i].slots); 
+      }
       
       dates.push({
-        date: i,
-        isCurrentMonth: true,
-        isToday: isToday,
-        fullDate: new Date(currentYear, currentMonth, i)
+        specification: availableDays[i].specification,
+        slots: availableDays[i].slots,
+        active: false,
+        day: availableDays[i].day,
+        fullDate: new Date(currentYear, currentMonth, availableDays[i].day)
       });
     }
     
+    //dates = dates.concat(availableDays);
+
     // Next month's first days
     for (let i = end; i < 6; i++) {
       dates.push({
-        date: i - end + 1,
-        isCurrentMonth: false,
-        isToday: false,
+        specification: "old",
+        slots: [],
+        active: false,
+        day: i - end + 1,
         fullDate: new Date(currentYear, currentMonth + 1, i - end + 1)
       });
     }
-    
+
     return dates;
   };
   
@@ -367,24 +407,28 @@ function Apply({ setHome }){
       setCalendarDate(new Date(currentYear, currentMonth + 1, 1));
     }
   };
+
+  const handleSlotClick = (slot, e) => {
+    e.preventDefault();
+    
+    // Update the hidden time input
+    setSelectedTime(slot);
+  }
   
   // Handle date selection
   const handleDateClick = (dateObj) => {
-    if (dateObj.isCurrentMonth) {
       setSelectedDate(dateObj.fullDate);
-      // Update the hidden date input
-      const dateInput = document.getElementById('date');
-      if (dateInput) {
-        dateInput.value = dateObj.fullDate.toISOString().split('T')[0];
-      }
-    }
+      
+      // Update the available slots for the selected date
+      setAvailableSlots(dateObj.slots);
+      setSelectedTime(null);
   };
 
   return (
     <div>
       <div className="apply-page-conatiner">
         <div className="HBC">
-          <a className="HB" onClick={() => setHome(true)}>
+          <a className="HB" onClick={() => setPage("home")}>
             <i className="fas fa-arrow-left HBC-Arrow"></i>Home
           </a>
           <div className="HBC-Div"></div>
@@ -508,7 +552,7 @@ function Apply({ setHome }){
               <label htmlFor="date">Select Date & Time</label>
               <input type="date" name="date" id="date" hidden/>
             </div>
-            <div className="IGI IGI-FULL Calendar">
+            <div className="IGI Calendar">
               <div className="cal-container">
                 <div className="calendar">
                   <div className="cal-head">
@@ -532,26 +576,34 @@ function Apply({ setHome }){
                         <div>Sat</div>
                       </div>
                       <ul className="dates">
-                        {generateCalendarDates().map((dateObj, index) => (
-                          <div></div>
-                          
-                        ))}
+                        {generateCalendarDates().map((dateObj, index) => {
+                          const hasSlots = dateObj.slots.length > 0;
+                          const isActive = selectedDate?.getTime() === dateObj.fullDate.getTime() ? " active" : "";
+
+                          return (
+                            <li
+                              key={hasSlots ? index : undefined}
+                              onClick={hasSlots ? () => handleDateClick(dateObj) : undefined}
+                              className={`${dateObj.specification}${isActive} ${hasSlots ? "" : "current-disabled"}`}
+                            >
+                              <span>{dateObj.day}</span>
+                            </li>
+                          );
+                        })}
                       </ul>
                     </div>
                   </div>
               </div>
             </div>
-            <div className="IGI">
+            <div className="IGI IGI-Full-2">
               <div className="Time-Slots">
-                <a className="Time">09:00 AM</a>
-                <a className="Time">10:00 AM</a>
-                <a className="Time">11:00 AM</a>
-                <a className="Time">12:00 PM</a>
-                <a className="Time">01:00 PM</a>
-                <a className="Time">02:00 PM</a>
-                <a className="Time">03:00 PM</a>
-                <a className="Time">04:00 PM</a>
-                <a className="Time">05:00 PM</a>
+                {availableSlots.map((slot, index) => {
+                  return (
+                    <button className={`Time ${selectedTime === slot ? "Time-active" : ""}`} key={slot} onClick={(e) => handleSlotClick(slot, e)}>
+                      {slot}
+                    </button>
+                  );
+                })}
               </div>
             </div>
             <div className="IGI IGI-Full-3">
@@ -559,7 +611,55 @@ function Apply({ setHome }){
               <textarea className="AI-text" name="additional-info" id="additional-info" placeholder="Is there anything you would like us to know before your appointment?" />
             </div>
             <div className="IGI IGI-Full-3">
-              <a className="apply-button AB" onClick={() => {}}>Next</a>
+              <a className="apply-button AB" onClick={() => {
+                  if (!selectedDate){
+                    alert("Please select a date");
+                    return;
+                  } else if (!selectedTime){
+                    alert("Please select a time");
+                    return;
+                  }
+
+                  const first_name = document.getElementById("first-name").value;
+                  const last_name = document.getElementById("last-name").value;
+                  const phone = document.getElementById("phone").value;
+                  const email = document.getElementById("email").value;
+                  const service = document.getElementById("service").value;
+                  const type = document.getElementById("type").value;
+                  const company = document.getElementById("company").value;
+                  const company_age = document.getElementById("company-age").value;
+                  const business_revenue = document.getElementById("business-revenue").value;  
+                  const additional_info = document.getElementById("additional-info").value;
+                  const date = selectedDate.toISOString().split('T')[0];
+                  const time = selectedTime;
+
+                  //send data to server
+                  fetch('/api/book', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json'
+                    },
+                      body: JSON.stringify({
+                      first_name: first_name,
+                      last_name: last_name,
+                      phone: phone,
+                      email: email,
+                      service: service,
+                      type: type,
+                      company: company,
+                      company_age: company_age,
+                      business_revenue: business_revenue,
+                      additional_info: additional_info,
+                      date: date,
+                      time: time
+                    })
+                  })
+                  .then(response => response.json()) // Parse the JSON response
+                  .then(data => console.log('Success:', data))
+                  .catch(error => console.error('Error:', error));
+
+                  setPage("thankYou");
+              }}>Submit</a>
             </div>
           </div>
           </div>
@@ -580,10 +680,12 @@ function Apply({ setHome }){
 }
 
 function App() {
-  const [home, setHome] = React.useState(true);
+  const [page, setPage] = React.useState("home");
 
   return (
-    home ? <Home setHome={setHome} /> : <Apply setHome={setHome}/>
+    page === "home" ? <Home setPage={setPage} /> : 
+    page === "thankYou" ? <ThankYou setPage={setPage} /> : 
+    <Apply setPage={setPage}/>
   );
 }
 

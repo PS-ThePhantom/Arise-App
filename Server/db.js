@@ -17,25 +17,3 @@ db.run(sql, (err) => {
   console.log("Table created successfully.")
 })
 
-//create holidays table for all south african holidays
-sql = `CREATE TABLE IF NOT EXISTS holidays(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE, day, month)`
-
-db.run(sql, (err) => {
-  if (err) {
-    console.error(err.message)
-  }
-  console.log("Table created successfully.")
-})
-
-//create table for all the available time slots
-sql = `CREATE TABLE IF NOT EXISTS time_slots(id INTEGER PRIMARY KEY AUTOINCREMENT, time TEXT UNIQUE)`
-
-db.run(sql, (err) => {
-  if (err) {
-    console.error(err.message)
-  }
-  console.log("Table created successfully.")
-})
-
-//insert all south african holidays into holidays table
-const date = new Date();
